@@ -1,0 +1,13 @@
+# Python byte code & cache
+__pycache__/
+*.pyc
+
+# Operating System files
+.DS_Store
+
+# Environment & credentials
+.env
+.venv/
+
+# Logs
+*.log
