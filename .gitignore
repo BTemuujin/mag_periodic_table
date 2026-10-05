@@ -11,3 +11,8 @@ __pycache__/
 
 # Logs
 *.log
+
+# Intermediate build artifacts
+magnetic_elements_db.json
+magnetic_elements_crystallography.json
+interactive_table.html

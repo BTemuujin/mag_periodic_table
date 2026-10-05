@@ -78,7 +78,7 @@ def main():
     base_db = WORKSPACE_DIR / "magnetic_elements_db.json"
     cryst_db = WORKSPACE_DIR / "magnetic_elements_crystallography.json"
     enriched_db = WORKSPACE_DIR / "magnetic_elements_enriched.json"
-    html_out = WORKSPACE_DIR / "interactive_table.html"
+    html_out = WORKSPACE_DIR / "index.html"
     png_out = WORKSPACE_DIR / "magnetic_periodic_table.png"
 
     if args.clean:
@@ -131,7 +131,7 @@ def main():
 
     # Step 7: Build interactive web application
     run_step(
-        "Build Interactive Web Application (interactive_table.html)",
+        "Build Interactive Web Application (index.html)",
         [sys.executable, "build_interactive_table.py", "-i", str(enriched_db), "-o", str(html_out)]
     )
 
@@ -146,7 +146,7 @@ def main():
     print(f"\n{'='*70}")
     print(f"🎉 BUILD PIPELINE COMPLETED SUCCESSFULLY in {total_elapsed:.2f}s!")
     print(f"  - Database:    {enriched_db.name} ({enriched_db.stat().st_size / 1024:.1f} KB)")
-    print(f"  - Web App:     {html_out.name} & index.html ({html_out.stat().st_size / 1024:.1f} KB)")
+    print(f"  - Web App:     {html_out.name} ({html_out.stat().st_size / 1024:.1f} KB)")
     if not args.skip_image and png_out.exists():
         print(f"  - PNG Poster:  {png_out.name} ({png_out.stat().st_size / (1024*1024):.2f} MB)")
     print(f"{'='*70}\n")

@@ -35,7 +35,7 @@ def generate_html(
         enriched_json_path = Path(enriched_json_path).resolve()
 
     if output_html_path is None:
-        output_html_path = base_dir / "interactive_table.html"
+        output_html_path = base_dir / "index.html"
     else:
         output_html_path = Path(output_html_path).resolve()
 
@@ -3942,6 +3942,6 @@ def generate_html(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build interactive Magnetic Periodic Table web application.")
     parser.add_argument("-i", "--input", default=None, help="Input enriched JSON file (default: magnetic_elements_enriched.json)")
-    parser.add_argument("-o", "--output", default=None, help="Output HTML file (default: interactive_table.html)")
+    parser.add_argument("-o", "--output", default=None, help="Output HTML file (default: index.html)")
     args = parser.parse_args()
     generate_html(enriched_json_path=args.input, output_html_path=args.output)

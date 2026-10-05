@@ -64,7 +64,7 @@ The interactive web application runs in any modern browser with zero server depe
 
 ## Key Features
 
-1. **Self-Contained Interactive Web Application (`interactive_table.html` & `index.html`)**:
+1. **Self-Contained Interactive Web Application (`index.html`)**:
    - Zero-CORS offline execution via fully embedded JSON dataset.
    - Instant search and multi-criteria filters (Magnetic class, USGS Critical Minerals, Radioactive, Crystal System, Technological Role).
    - **Interactive 3D WebGL Crystal & Spin Viewer** (Three.js with OrbitControls and 2D Canvas fallback): renders unit cell geometries with parallel cyan spin arrows for ferromagnets and antiparallel cyan/coral arrows for antiferromagnets.
@@ -110,7 +110,7 @@ python3 build_all.py
 ```
 This automatically updates:
 - `magnetic_elements_enriched.json` (Full 118-element verified dataset)
-- `interactive_table.html` & `index.html` (Interactive web application for GitHub Pages)
+- `index.html` (Interactive web application for GitHub Pages & local use)
 - `magnetic_periodic_table.png` (300 DPI high-resolution poster)
 
 ### Testing & Validation
@@ -137,8 +137,7 @@ xdg-open index.html  # Linux
 
 ```
 mag_periodic_table/
-├── index.html                       # GitHub Pages root entrypoint (self-contained web app)
-├── interactive_table.html           # Full interactive web application (offline/Zero-CORS)
+├── index.html                       # GitHub Pages root web application (self-contained, 3D WebGL)
 ├── magnetic_periodic_table.png      # Publication-grade poster (8400x5400 px, 300 DPI)
 ├── interactive_preview.png          # High-resolution web application UI preview card
 ├── magnetic_elements_enriched.json  # Complete 118-element verified scientific database
@@ -146,7 +145,7 @@ mag_periodic_table/
 ├── build_database.py                # Base dataset generator (Z=1..118)
 ├── enrich_database.py               # Crystallography & Materials Project enrichment
 ├── enrich_magnetic_data.py          # Quantum, thermodynamic & spintronic enrichment
-├── build_interactive_table.py       # Compiler for index.html & interactive_table.html
+├── build_interactive_table.py       # Web application compiler (generates index.html)
 ├── generate_magnetic_table.py       # Matplotlib renderer for 300 DPI poster graphic
 ├── validate_database.py             # Scientific validation and schema audit suite
 ├── test_pipeline.py                 # Multi-stage integration test suite

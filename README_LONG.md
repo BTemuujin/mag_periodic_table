@@ -22,7 +22,7 @@ Inspired by the pioneering work of **Prof. J. M. D. Coey** and the Magnetism & S
    - [`enrich_magnetic_data.py`](#enrich_magnetic_datapy)
    - [`generate_magnetic_table.py`](#generate_magnetic_tablepy)
    - [`build_interactive_table.py`](#build_interactive_tablepy)
-   - [`interactive_table.html` & Web Application](#interactive_tablehtml--web-application)
+   - [`index.html` & Web Application](#indexhtml--web-application)
 5. [Magnetic Physics & Ordering Data Summary](#magnetic-physics--ordering-data-summary)
 6. [USGS Critical Minerals Breakdown](#usgs-critical-minerals-breakdown)
 7. [Scientific Provenance & Physical Conditions](#scientific-provenance--physical-conditions)
@@ -37,11 +37,11 @@ Standard periodic tables arrange chemical elements strictly according to atomic 
 
 This project provides an end-to-end computational pipeline that:
 1. **Aggregates and verifies** atomic, radioactive, economic, and magnetic data for all 118 elements from authoritative scientific references (IUPAC, NIST, USGS, Trinity College Dublin).
-2. **Structures and standardizes** the dataset into a validated JSON database (`magnetic_elements_db.json`).
+2. **Structures and standardizes** the dataset into a validated JSON database.
 3. **Enriches** the database with crystallography, electronic configurations, and Materials Project DFT properties (`enrich_database.py`).
 4. **Deepens magnetic metrics** across quantum, thermodynamic, spintronic, and technological domains (`enrich_magnetic_data.py`), generating `magnetic_elements_enriched.json`.
 5. **Renders an ultra-high-resolution poster** (`magnetic_periodic_table.png` at 300 DPI, $8400 \times 5400\text{ px}$) implementing an 18-column grid with pulled-out Lanthanides and Actinides, two dedicated reference/legend boxes, and full scientific attributions.
-6. **Compiles an interactive web application** (`interactive_table.html`) featuring client-side filtering, instant search, a 3D WebGL crystal structure/spin vector viewer, and a dedicated **Quantum & Advanced Magnetism** drawer tab with KaTeX mathematical formatting.
+6. **Compiles an interactive web application** (`index.html`) featuring client-side filtering, instant search, a 3D WebGL crystal structure/spin vector viewer, and a dedicated **Quantum & Advanced Magnetism** drawer tab with KaTeX mathematical formatting.
 
 ---
 
@@ -83,18 +83,21 @@ Elements are classified by their primary commercial and experimental roles in fu
 ## File Inventory & Architecture
 
 ```
-/home/tbayaraa/projects/mag_periodic_table/
-├── build_database.py             # Base data ingestion and verification script
-├── magnetic_elements_db.json     # Base validated dataset of all 118 elements
-├── enrich_database.py            # Deep enrichment engine (crystallography, Materials Project, bonding)
-├── enrich_magnetic_data.py       # Quantum, thermodynamic, spintronic, and technological magnetic enrichment engine
-├── magnetic_elements_enriched.json # Comprehensive 118-element JSON database with all physical & advanced magnetic parameters
-├── generate_magnetic_table.py    # Matplotlib graphic rendering engine (poster PNG)
+mag_periodic_table/
+├── index.html                    # GitHub Pages root web application (self-contained, 3D WebGL)
+├── magnetic_elements_enriched.json # Comprehensive 118-element verified JSON database
 ├── magnetic_periodic_table.png   # Ultra-high-resolution output poster (300 DPI)
+├── interactive_preview.png       # Web application preview card
+├── build_all.py                  # Master one-click build and validation pipeline
+├── build_database.py             # Base data ingestion and verification script
+├── enrich_database.py            # Deep enrichment engine (crystallography, Materials Project)
+├── enrich_magnetic_data.py       # Quantum, thermodynamic, spintronic enrichment engine
 ├── build_interactive_table.py    # Web application compiler / HTML generator
-├── interactive_table.html        # Interactive self-contained Periodic Table web application
-├── index.html                    # GitHub Pages root web application entrypoint
-└── README.md                     # Concise overview documentation
+├── generate_magnetic_table.py    # Matplotlib graphic rendering engine (poster PNG)
+├── validate_database.py          # Scientific validation and schema audit suite
+├── test_pipeline.py              # Multi-stage integration test suite
+├── README.md                     # Concise overview documentation
+└── README_LONG.md                # Full scientific handbook and technical specification
 ```
 
 ---
@@ -225,11 +228,11 @@ Elements are classified by their primary commercial and experimental roles in fu
 ### `build_interactive_table.py`
 
 #### Purpose
-`build_interactive_table.py` is the compiler for the interactive web frontend. It reads `magnetic_elements_enriched.json`, embeds the full verified dataset directly into the document for offline reliability, integrates KaTeX for client-side LaTeX formula rendering, and writes `interactive_table.html`.
+`build_interactive_table.py` is the compiler for the interactive web frontend. It reads `magnetic_elements_enriched.json`, embeds the full verified dataset directly into the document for offline reliability, integrates KaTeX for client-side LaTeX formula rendering, and writes `index.html`.
 
 ---
 
-### `interactive_table.html` & Web Application
+### `index.html` (Interactive Web Application)
 
 #### Purpose
 A modern, self-contained interactive web application replicating the visual fidelity of `magnetic_periodic_table.png` with dynamic client-side filtering, instantaneous search, an interactive slide-out element inspection drawer, and real-time 3D crystallographic/spin visualization.
@@ -276,7 +279,7 @@ A modern, self-contained interactive web application replicating the visual fide
      - **Tab 4: Electronic & Chemical**: Full and abbreviated configurations with orbital superscripts, valence electron count, Pauling electronegativity, oxidation state pills, and atomic/covalent radii.
      - **Tab 5: Physical / Thermal**: Standard state, density, melting point, and boiling point in both Kelvin and Celsius.
 5. **Self-Contained & CORS-Safe**:
-   - Embeds the full JSON dataset inside `<script id="embedded-elements-data" type="application/json">` while attempting an asynchronous `fetch('magnetic_elements_enriched.json')`. If the user opens `interactive_table.html` directly using a `file://` URI in modern browsers that enforce local CORS restrictions, the app falls back seamlessly to the embedded dataset with zero loss of functionality.
+   - Embeds the full JSON dataset inside `<script id="embedded-elements-data" type="application/json">` while attempting an asynchronous `fetch('magnetic_elements_enriched.json')`. If the user opens `index.html` directly using a `file://` URI in modern browsers that enforce local CORS restrictions, the app falls back seamlessly to the embedded dataset with zero loss of functionality.
 
 ---
 
@@ -481,7 +484,7 @@ To ensure academic and engineering reliability, this project enforces strict bou
    - For elements with complex or non-collinear ordering (such as $\alpha$-Mn with 58 atoms/cell, Cr incommensurate spin-density waves, or Dy/Ho/Tb helical/conical modulations), the model illustrates the primary sublattice spin orientations and carries prominent scientific disclaimers in the viewer.
 
 4. **Self-Contained Embedded Dataset & CDN Assets**:
-   - The entire 118-element dataset is 100% embedded offline in `interactive_table.html` (zero CORS or external API calls required for complete data access).
+   - The entire 118-element dataset is 100% embedded offline in `index.html` (zero CORS or external API calls required for complete data access).
    - High-fidelity 3D graphics (Three.js) and formula rendering (KaTeX) load from trusted CDNs when online, falling back gracefully to an embedded 2D HTML5 Canvas projection when offline.
 
 5. **Reproducibility & Offline Determinism**:
@@ -538,7 +541,7 @@ python3 enrich_magnetic_data.py -i magnetic_elements_crystallography.json -o mag
 python3 validate_database.py --mode enriched magnetic_elements_enriched.json
 
 # Step 7: Compile interactive web application
-python3 build_interactive_table.py -i magnetic_elements_enriched.json -o interactive_table.html
+python3 build_interactive_table.py -i magnetic_elements_enriched.json -o index.html
 
 # Step 8: Render ultra-high-resolution poster (300 DPI)
 python3 generate_magnetic_table.py -i magnetic_elements_enriched.json -o magnetic_periodic_table.png
@@ -568,36 +571,25 @@ Technological Roles:    Hard=8, Soft=5, MCE=5, Additive=5, Standard=95
 ```
 
 ### Testing & Verification Framework
-The project maintains two distinct testing tiers covering data invariants, scientific consistency, and client-side logic:
+The project maintains a rigorous, multi-stage automated test suite covering data invariants, scientific consistency, and artifact integrity:
 
-1. **Clean Integration & Scientific Invariant Test Suite** (`python3 test_pipeline.py`):
-   - Executes a clean, end-to-end multi-stage pipeline build in an isolated temporary directory.
-   - Audits all 118 elements across base, crystallographic, and enriched stages.
-   - Enforces 100% coverage of the 79 curated Materials Project elemental ground states (`AUDITED_MP_ELEMENTAL_IDS`), ensuring no audited element is missing and no unauthorized ID is assigned.
-   - Validates electron configuration orbital capacities, Hund's rule coupling moments, macroscopic thermodynamic signs, and property-level physical scopes (`gas_phase_at_298K`, `liquid_phase_at_298K`, `bulk_solid_at_298K`, `bulk_solid_paramagnetic_at_298K`, and domain state).
-   - Validates recognized peer-reviewed bibliographic citations.
-   - Inspects the static artifact structure, schema, embedded dataset, and LaTeX markup of `interactive_table.html`.
+**Clean Integration & Scientific Invariant Test Suite** (`python3 test_pipeline.py`):
+- Executes a clean, end-to-end multi-stage pipeline build in an isolated temporary directory.
+- Audits all 118 elements across base, crystallographic, and enriched stages.
+- Enforces 100% coverage of the 79 curated Materials Project elemental ground states (`AUDITED_MP_ELEMENTAL_IDS`), ensuring no audited element is missing and no unauthorized ID is assigned.
+- Validates electron configuration orbital capacities, Hund's rule coupling moments, macroscopic thermodynamic signs, and property-level physical scopes (`gas_phase_at_298K`, `liquid_phase_at_298K`, `bulk_solid_at_298K`, `bulk_solid_paramagnetic_at_298K`, and domain state).
+- Validates recognized peer-reviewed bibliographic citations.
+- Inspects the static artifact structure, schema, embedded dataset, and LaTeX markup of `index.html`.
 
-   ```bash
-   python3 test_pipeline.py
-   ```
-
-2. **Headless Client Logic Test Suite** (`node test_interactive_logic.js`):
-   - Deserializes and parses the embedded JSON dataset directly from `interactive_table.html`.
-   - Validates client-side classification and category mapping algorithms.
-   - Verifies dynamic role tallies (`Hard=8`, `Soft=5`, `MCE=5`, `Additive=5`, `None=95`).
-   - Verifies `formatChi(val, elem)` formatting, including gas/liquid annotations, Gd paramagnetic notes, and Fe domain hysteresis notes.
-   - Verifies 3D crystal lattice coordinate math and magnetic spin vector projections for BCC, FCC, and HCP crystal systems.
-
-   ```bash
-   node test_interactive_logic.js
-   ```
+```bash
+python3 test_pipeline.py
+```
 
 *Note on Graphical Testing*: WebGL context creation, Canvas pixel rendering, and browser event listeners require a web browser runtime (such as Chrome or Firefox) and cannot be fully emulated in headless environments without graphical display drivers.
 
 ### Output File Details
 - **`magnetic_periodic_table.png`**: $8400 \times 5400\text{ pixels}$, 300 DPI, RGBA PNG (~2.0 MB).
-- **`interactive_table.html`**: Standalone, accessible web application with embedded dataset fallback, Three.js 3D crystal lattice & spin vector viewer with full 2D Canvas fallback parity, KaTeX formulas, dialog focus-trapping (`inert`), and dynamic multi-criteria filtering (~900 KB).
+- **`index.html`**: Standalone, accessible web application with embedded dataset fallback, Three.js 3D crystal lattice & spin vector viewer with full 2D Canvas fallback parity, KaTeX formulas, dialog focus-trapping (`inert`), and dynamic multi-criteria filtering (~900 KB).
 - **`magnetic_elements_enriched.json`**: Complete, validated 118-element database with separated free-atom moments ($\mu_{\mathrm{eff}}$) and bulk ordered moments ($\mu_{\mathrm{ord}}$ at $0\text{ K}$), intrinsic ground states, and functional alloy role rationales.
 
 ### Launch & View Interactive Web Application
@@ -612,12 +604,12 @@ Then open your web browser to:
 [http://localhost:8000](http://localhost:8000)
 
 #### Option B: Direct Browser Viewing (Offline / Zero-Server)
-Since `interactive_table.html` is 100% self-contained with embedded JSON data fallback, you can open it directly from the local file system without needing a running server:
+Since `index.html` is 100% self-contained with embedded JSON data fallback, you can open it directly from the local file system without needing a running server:
 ```bash
 # On Linux:
-xdg-open /home/tbayaraa/projects/mag_periodic_table/interactive_table.html
+xdg-open /home/tbayaraa/projects/mag_periodic_table/index.html
 
-# Or open file:///home/tbayaraa/projects/mag_periodic_table/interactive_table.html in Chrome/Firefox
+# Or open file:///home/tbayaraa/projects/mag_periodic_table/index.html in Chrome/Firefox
 ```
 
 ---

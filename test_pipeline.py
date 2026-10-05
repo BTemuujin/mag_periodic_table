@@ -64,7 +64,7 @@ class PipelineCleanBuildIntegrationTest(unittest.TestCase):
         cls.base_json = cls.tmp_dir / "magnetic_elements_db.json"
         cls.cryst_json = cls.tmp_dir / "magnetic_elements_crystallography.json"
         cls.enriched_json = cls.tmp_dir / "magnetic_elements_enriched.json"
-        cls.html_out = cls.tmp_dir / "interactive_table.html"
+        cls.html_out = cls.tmp_dir / "index.html"
 
         # 1. build_database.py
         res = subprocess.run(
@@ -310,10 +310,8 @@ class PipelineCleanBuildIntegrationTest(unittest.TestCase):
         Dynamic browser DOM interactions, event loops, focus trapping, and WebGL context
         initialization are exercised separately in headless runtime environments (Node.js/Playwright).
         """
-        self.assertTrue(self.html_out.exists(), "interactive_table.html not created")
-        index_out = self.html_out.parent / "index.html"
-        self.assertTrue(index_out.exists(), "index.html entry point not created")
-        self.assertFalse(index_out.is_symlink(), "index.html must be a real file, not a symlink")
+        self.assertTrue(self.html_out.exists(), "index.html not created")
+        self.assertFalse(self.html_out.is_symlink(), "index.html must be a real file, not a symlink")
         size_kb = self.html_out.stat().st_size / 1024
         self.assertGreater(size_kb, 500, f"HTML file size too small: {size_kb:.1f} KB")
 
