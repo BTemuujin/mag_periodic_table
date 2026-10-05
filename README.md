@@ -1,10 +1,10 @@
 # Magnetic Periodic Table & Critical Minerals Visualization
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-2563EB?style=for-the-badge&logo=github)](https://<your-github-username>.github.io/mag_periodic_table/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-2563EB?style=for-the-badge&logo=github)](https://btemuujin.github.io/mag_periodic_table/)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-> 🚀 **Live Interactive Web Application**: [https://&lt;your-github-username&gt;.github.io/mag_periodic_table/](https://<your-github-username>.github.io/mag_periodic_table/)
+> 🚀 **Live Interactive Web Application**: [https://btemuujin.github.io/mag_periodic_table/](https://btemuujin.github.io/mag_periodic_table/)
 >
 > 📖 *For complete derivations, comprehensive physical data tables, and in-depth architecture, consult the [Full Scientific Specification (README_LONG.md)](README_LONG.md).*
 
@@ -25,11 +25,26 @@ Inspired by the foundational work of **Prof. J. M. D. Coey** (*Magnetism and Mag
 
 ## Preview
 
-| Publication Poster Graphic (300 DPI) | Interactive Web Application |
-| :---: | :---: |
-| ![Poster Preview](magnetic_periodic_table.png) | 3D WebGL Crystal Viewer with Magnetic Spin Vectors & KaTeX Math |
+### 1. Static Publication-Grade Periodic Table (300 DPI)
+
+The high-resolution master reference poster (`magnetic_periodic_table.png`, 8400 × 5400 px, print-ready 300 DPI) displays all 118 elements arranged in an 18-column IUPAC format with separated Lanthanides and Actinides, magnetic ground states, transition temperatures, critical mineral stars, radioactive hatching, and dedicated reference/legend boxes.
+
+[![Static Magnetic Periodic Table Poster (300 DPI)](magnetic_periodic_table.png)](magnetic_periodic_table.png)
 
 ---
+
+### 2. A Glance at the Live Interactive Application
+
+The interactive web application runs in any modern browser with zero server dependencies (fully self-contained, Zero-CORS offline execution). It provides real-time magnetic classification filters, dynamic role tallies, full-text search, and an element inspection drawer featuring an **interactive 3D WebGL crystal structure & magnetic spin vector viewer** with KaTeX mathematical formatting.
+
+> 🌐 **Launch the Live Application**: [https://btemuujin.github.io/mag_periodic_table/](https://btemuujin.github.io/mag_periodic_table/)
+
+[![Interactive Web Application Preview](interactive_preview.png)](https://btemuujin.github.io/mag_periodic_table/)
+
+**Interactive Highlights at a Glance:**
+- **Dynamic Multi-Criteria Filtering**: Filter by magnetic class (Ferromagnet, Antiferromagnet, Low-T ordering, Paramagnet, Diamagnet), USGS Critical Minerals, Radioactive stability, Crystal System, and functional alloy role.
+- **Interactive 3D Crystal & Spin Vector Viewer**: Renders unit cells (BCC, FCC, HCP, Diamond) in Three.js with directional spin vectors (parallel cyan arrows for ferromagnets, alternating cyan/coral arrows for antiferromagnets), auto-rotation, OrbitControls, and fullscreen inspection.
+- **Quantum & Solid-State Parameter Inspection**: Explores Russell–Saunders term symbols, Landé $g_J$, effective moments, low-temperature saturation magnetization ($M_s$), bulk ordered moments ($\mu_{\mathrm{ord}}$), and phase-scoped molar susceptibility ($\chi_{\mathrm{m}}$).
 
 ## Magnetic Classification & Visual Legend
 

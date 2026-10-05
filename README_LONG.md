@@ -1,6 +1,6 @@
-# Magnetic Periodic Table & Critical Minerals Visualization
+# Magnetic Periodic Table & Critical Minerals Visualization (Full Scientific Handbook)
 
-> 🚀 **Live Interactive Web Application**: [https://&lt;your-github-username&gt;.github.io/mag_periodic_table/](https://<your-github-username>.github.io/mag_periodic_table/)
+> 🚀 **Live Interactive Web Application**: [https://btemuujin.github.io/mag_periodic_table/](https://btemuujin.github.io/mag_periodic_table/)
 
 A publication-grade scientific periodic table visualization that classifies all 118 chemical elements by their **intrinsic magnetic ground states**, **magnetic transition temperatures (Curie $T_C$ and Néel $T_N$)**, **USGS Critical Minerals designation**, and **radioactive stability**.
 
