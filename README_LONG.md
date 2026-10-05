@@ -22,7 +22,7 @@ Inspired by the pioneering work of **Prof. J. M. D. Coey** and the Magnetism & S
    - [`enrich_magnetic_data.py`](#enrich_magnetic_datapy)
    - [`generate_magnetic_table.py`](#generate_magnetic_tablepy)
    - [`build_interactive_table.py`](#build_interactive_tablepy)
-   - [`interactive_table.html` & `app.py`](#interactive_tablehtml--apppy)
+   - [`interactive_table.html` & Web Application](#interactive_tablehtml--web-application)
 5. [Magnetic Physics & Ordering Data Summary](#magnetic-physics--ordering-data-summary)
 6. [USGS Critical Minerals Breakdown](#usgs-critical-minerals-breakdown)
 7. [Scientific Provenance & Physical Conditions](#scientific-provenance--physical-conditions)
@@ -93,8 +93,8 @@ Elements are classified by their primary commercial and experimental roles in fu
 ├── magnetic_periodic_table.png   # Ultra-high-resolution output poster (300 DPI)
 ├── build_interactive_table.py    # Web application compiler / HTML generator
 ├── interactive_table.html        # Interactive self-contained Periodic Table web application
-├── app.py                        # Lightweight local server to run the interactive web app
-└── README.md                     # Comprehensive project documentation (this file)
+├── index.html                    # GitHub Pages root web application entrypoint
+└── README.md                     # Concise overview documentation
 ```
 
 ---
@@ -229,7 +229,7 @@ Elements are classified by their primary commercial and experimental roles in fu
 
 ---
 
-### `interactive_table.html` & `app.py`
+### `interactive_table.html` & Web Application
 
 #### Purpose
 A modern, self-contained interactive web application replicating the visual fidelity of `magnetic_periodic_table.png` with dynamic client-side filtering, instantaneous search, an interactive slide-out element inspection drawer, and real-time 3D crystallographic/spin visualization.
@@ -277,10 +277,6 @@ A modern, self-contained interactive web application replicating the visual fide
      - **Tab 5: Physical / Thermal**: Standard state, density, melting point, and boiling point in both Kelvin and Celsius.
 5. **Self-Contained & CORS-Safe**:
    - Embeds the full JSON dataset inside `<script id="embedded-elements-data" type="application/json">` while attempting an asynchronous `fetch('magnetic_elements_enriched.json')`. If the user opens `interactive_table.html` directly using a `file://` URI in modern browsers that enforce local CORS restrictions, the app falls back seamlessly to the embedded dataset with zero loss of functionality.
-6. **Local Development Server (`app.py`)**:
-   - Zero-dependency Python server using standard library `http.server`.
-   - Automatically maps root `/` to `interactive_table.html`.
-   - Detects free ports automatically if port 8000 is occupied.
 
 ---
 
@@ -607,12 +603,10 @@ The project maintains two distinct testing tiers covering data invariants, scien
 ### Launch & View Interactive Web Application
 You can view the interactive periodic table in any web browser using either of two convenient methods:
 
-#### Option A: Local Development Server (Recommended)
-Run the lightweight built-in HTTP server:
+#### Option A: Local Development Server
+Run Python's built-in HTTP server:
 ```bash
-python3 app.py
-# Or specify a custom port:
-python3 app.py --port 8080
+python3 -m http.server 8000
 ```
 Then open your web browser to:
 [http://localhost:8000](http://localhost:8000)

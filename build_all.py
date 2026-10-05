@@ -141,10 +141,6 @@ def main():
             "Render Publication-Grade Periodic Table PNG (300 DPI)",
             [sys.executable, "generate_magnetic_table.py", "-i", str(enriched_db), "-o", str(png_out)]
         )
-        run_step(
-            "Render Interactive Web Application Preview PNG",
-            [sys.executable, "generate_interactive_preview.py"]
-        )
 
     total_elapsed = time.time() - start_total
     print(f"\n{'='*70}")
@@ -153,7 +149,6 @@ def main():
     print(f"  - Web App:     {html_out.name} & index.html ({html_out.stat().st_size / 1024:.1f} KB)")
     if not args.skip_image and png_out.exists():
         print(f"  - PNG Poster:  {png_out.name} ({png_out.stat().st_size / (1024*1024):.2f} MB)")
-        print(f"  - PNG Preview: interactive_preview.png")
     print(f"{'='*70}\n")
 
 if __name__ == "__main__":

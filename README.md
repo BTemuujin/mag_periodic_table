@@ -118,18 +118,15 @@ This automatically updates:
 # Run scientific integration tests and schema validators
 python3 test_pipeline.py
 python3 validate_database.py --mode enriched magnetic_elements_enriched.json
-
-# Run headless client-side JavaScript tests (Node.js)
-node test_interactive_logic.js
 ```
 
 ### Launch Interactive Web App Locally
 ```bash
-# Option A: Built-in local HTTP server
-python3 app.py
-# Open http://localhost:8000
+# Option A: Standard library HTTP server
+python3 -m http.server 8000
+# Open http://localhost:8000 in your browser
 
-# Option B: Direct zero-server offline viewing
+# Option B: Direct zero-server offline viewing (embedded data, zero-CORS)
 open index.html      # macOS
 xdg-open index.html  # Linux
 ```
@@ -143,6 +140,7 @@ mag_periodic_table/
 ├── index.html                       # GitHub Pages root entrypoint (self-contained web app)
 ├── interactive_table.html           # Full interactive web application (offline/Zero-CORS)
 ├── magnetic_periodic_table.png      # Publication-grade poster (8400x5400 px, 300 DPI)
+├── interactive_preview.png          # High-resolution web application UI preview card
 ├── magnetic_elements_enriched.json  # Complete 118-element verified scientific database
 ├── build_all.py                     # Master one-click build and validation pipeline
 ├── build_database.py                # Base dataset generator (Z=1..118)
@@ -152,9 +150,7 @@ mag_periodic_table/
 ├── generate_magnetic_table.py       # Matplotlib renderer for 300 DPI poster graphic
 ├── validate_database.py             # Scientific validation and schema audit suite
 ├── test_pipeline.py                 # Multi-stage integration test suite
-├── test_interactive_logic.js        # Headless Node.js client logic test suite
-├── app.py                           # Lightweight local development server
-├── README.md                        # This concise overview documentation
+├── README.md                        # Concise overview documentation
 └── README_LONG.md                   # Full comprehensive scientific specification & handbook
 ```
 
